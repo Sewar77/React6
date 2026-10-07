@@ -1,14 +1,24 @@
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+
 function App() {
   // js
 
   return (
     <>
-      <h1>sewar</h1>
-      <a href="www.google.com">Google</a>
-      <div>
-        {console.log("sewar")}
-        {/* html +  css */}
+      {/* components */}
+      <Header />
+      <div className="min-h-[100vh]">
+        <HeroSection />
+        <HeroSection />
+        <HeroSection />
+        <HeroSection />
+        <HeroSection />
+        <HeroSection />
+        <HeroSection />
       </div>
+      <Footer />
     </>
   );
 }
