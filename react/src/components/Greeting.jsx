@@ -2,7 +2,6 @@ import Product from "./Product";
 
 export default function Greeting({ name = "User" }) {
   // greeting component recieves name as props
-
   return (
     <>
       {/* child  */}

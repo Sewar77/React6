@@ -1,5 +1,5 @@
-
 export default function Header() {
+
   return (
     <>
       <div className="bg-red-900 h-20 snap-x content-center p-4">
