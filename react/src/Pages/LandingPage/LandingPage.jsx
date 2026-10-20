@@ -7,7 +7,7 @@ export default function LandinPage() {
   return (
     <>
       <Header />
-      <Container sx={{ my: 3, minHieght: "100vh" }}>
+      <Container sx={{ my: 3, minHeight: "100vh" }}>
         <Typography variant="h1">Welocme</Typography>
       </Container>
       <Footer />

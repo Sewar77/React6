@@ -1,9 +1,13 @@
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 import Home from "./Pages/Home/Home";
 import LandinPage from "./Pages/LandingPage/LandingPage";
 import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 function App() {
   return (
     <>
+      <Toaster position="top-center" />
       <Routes>
         {/* general routes */}
         {/* define routes */}
@@ -11,8 +15,8 @@ function App() {
         <Route path="/" element={<LandinPage />} />
         {/* first page  */}
         <Route path="/home" element={<Home />} />
-        <Route path="/register" element={<Home />} />
-        <Route path="/login" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
         {/* admin routes */}
 
@@ -21,7 +25,6 @@ function App() {
     </>
   );
 }
-
 export default App;
 // component based arch => cba
 // role based access = > rba
