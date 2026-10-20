@@ -1,3 +1,4 @@
+import Home from "./Pages/Home/Home";
 import LandinPage from "./Pages/LandingPage/LandingPage";
 import { Route, Routes } from "react-router-dom";
 function App() {

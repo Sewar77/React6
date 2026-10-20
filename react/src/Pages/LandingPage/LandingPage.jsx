@@ -1,7 +1,8 @@
 // before login
-import { Container } from "@mui/material";
-import Haeder from "../../components/Layout/Header";
+import { Container, Typography } from "@mui/material";
+import Header from "../../components/Layout/Header";
 import Footer from "../../components/Layout/Footer";
+
 export default function LandinPage() {
   return (
     <>

@@ -1,9 +1,12 @@
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
-  const navigate = useNaviagte();
+  const navigate = useNavigate();
   return (
     <>
       <AppBar position="static">
-        <ToolBar sx={{ justifyContent: "space-between" }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
           <Typography variant="h2">Logo</Typography>
           <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
             {/* use routes */}
@@ -16,7 +19,7 @@ export default function Header() {
             <IconButton>About</IconButton>
             <IconButton>Menu</IconButton>
           </Box>
-        </ToolBar>
+        </Toolbar>
       </AppBar>
     </>
   );
