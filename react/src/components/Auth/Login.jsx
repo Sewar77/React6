@@ -7,7 +7,19 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import { useAuth } from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const handleLogin = () => {
+    login(userData.email, userData.password);
+  };
   return (
     <>
       <Container sx={{ my: "auto" }}>
@@ -17,9 +29,25 @@ export default function Login() {
         >
           <Typography variant="h3">Welcom Back!</Typography>
           <Divider>complete your journy</Divider>
-          <TextField label="Enter Your Email" type="email" />
-          <TextField label="Enter Your Password" type="password" />
-          <Button variant="contained">Login</Button>
+          <TextField
+            label="Enter Your Email"
+            type="email"
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
+          />
+          <TextField
+            label="Enter Your Password"
+            type="password"
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
+          />
+          <Button variant="contained" onClick={() => handleLogin()}>
+            Login
+          </Button>
+          <Typography>dont have account?</Typography>
+          <Button onClick={() => navigate("/register")}>Register</Button>
         </Paper>
       </Container>
     </>

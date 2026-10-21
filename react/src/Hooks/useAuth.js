@@ -1,9 +1,11 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom"
 export const useAuth = () => {
+    const navigate = useNavigate()
     // retrun group of things: function, variables(state)
     const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users")) || [])
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")) || {})
     // setUsers(JSON.parse(localStorage.getItem("users")))
     const register = async (data) => {
         try {
@@ -51,12 +53,14 @@ export const useAuth = () => {
                 name: data.name,
                 email: data.email,
                 password: data.password,
-                id: Date.now()
+                id: Date.now(),
+                role: "user" //always the role is user
             }
             const newUsers = [...users, newUser] //local storage
             setUsers(newUsers)
             localStorage.setItem("users", JSON.stringify(newUsers))
-            toast.success("registered successfully");
+            toast.success("registered successfully, please login to continue");
+            navigate("/login")
         } catch (error) {
             toast.error(error);
             console.log(error);
@@ -66,5 +70,56 @@ export const useAuth = () => {
         }
     };
 
-    return { register };
+    const login = async (email, password) => {
+        try {
+            if (!email || !password) {
+                toast.error("please fill all fields!")
+                return
+            }
+            const isExsit = users.find(user => user.email === email)
+            if (!isExsit) {
+                toast.error("you dont have an account!")
+                return
+            }
+            // in case the user exist, all user info will be store in isexist. 
+            if (isExsit.password !== password) {
+                toast.error("password is not correct")
+                return
+            }
+            // store it inside state and the local storage
+            setCurrentUser(isExsit)
+            localStorage.setItem("currentUser", JSON.stringify(isExsit))
+            toast.success("login successfully")
+            //check role, if role is user, go to user pages. 
+            // if role is admin, go to admin dashboard. 
+            if (isExsit.role === "user") {
+                navigate("/home")
+            } else if (isExsit.role === "admin") {
+                navigate('/admin/dashboard')
+            }
+        } catch (error) {
+            toast.error(error);
+            console.log(error);
+            return;
+            // syntax error
+            // api error
+        }
+    }
+
+    const logout = async () => {
+        try {
+            localStorage.removeItem("currentUser")
+            toast.success("logout successfully")
+            navigate("/")
+            setCurrentUser(null)
+        } catch (error) {
+            toast.error(error);
+            console.log(error);
+            return;
+            // syntax error
+            // api error
+        }
+    }
+
+    return { register, login, currentUser, logout };
 };

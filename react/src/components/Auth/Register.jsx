@@ -10,7 +10,9 @@ import {
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 export default function Register() {
+  const navigate = useNavigate();
   // somewhere to store the data.
   const [userData, setUserData] = useState({
     name: "",
@@ -67,6 +69,8 @@ export default function Register() {
           <Button variant="contained" onClick={() => handleSubmit()}>
             Register
           </Button>
+          <Typography>already have account?</Typography>
+          <Button onClick={() => navigate("/login")}>Login</Button>
         </Paper>
       </Container>
     </>
