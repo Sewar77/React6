@@ -5,6 +5,9 @@ import LandinPage from "./Pages/LandingPage/LandingPage";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import DisplayUsers from "./components/Admin/Manage/ManageUsers/DisplayUsers";
+import AdminLayout from "./components/Admin/AdminLayout";
+import DisplayProducts from "./components/Admin/Manage/ManageProducts/DisplayProducts";
 function App() {
   return (
     <>
@@ -20,7 +23,11 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* admin routes */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index path="dashboard" element={<AdminDashboard />} />
+          <Route path="manage-users" element={<DisplayUsers />} />
+          <Route path="manage-products" element={<DisplayProducts />} />
+        </Route>
 
         {/* //every route is a pagfe */}
       </Routes>

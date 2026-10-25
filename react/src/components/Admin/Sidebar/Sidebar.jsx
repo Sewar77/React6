@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemButton } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemButton } from "@mui/material";
 import { useAuth } from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import CategoryIcon from "@mui/icons-material/Category";
@@ -8,34 +8,63 @@ import MessageIcon from "@mui/icons-material/Message";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
-export default function Sidebar() {
+import ReorderIcon from "@mui/icons-material/Reorder";
+export default function Sidebar({ open, onclick }) {
   const { lougout } = useAuth();
   const navigate = useNavigate();
-
   return (
     <>
       <Box
         sx={{
           position: "fixed",
-          width: "300px",
+          width: open ? "300px" : "70px",
           bgcolor: "#301934",
           height: "100vh",
           overflowY: "scroll",
           color: "white",
-          fontSize: "20px",
+          fontSize: open ? "24px" : "30px",
           fontWeight: "bold",
+          textAlign: open ? "left" : "center",
         }}
       >
+        <Button onClick={onclick}>
+          <ReorderIcon />
+        </Button>
         <List>
           <ListItem>
-            <DashboardIcon />
-            <ListItemButton onClick={() => navigate("/admin/dashboard")}>
-              Dashboard
-            </ListItemButton>
+            {open ? (
+              <>
+                <DashboardIcon />
+                <ListItemButton 
+                onClick={() => 
+                navigate("/admin/dashboard")}>
+                  Dashboard
+                </ListItemButton>
+              </>
+            ) : (
+              <>
+                <DashboardIcon
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => 
+                    navigate("/admin/dashboard")}
+                />
+              </>
+            )}
           </ListItem>
           <ListItem>
-            <GroupIcon />
-            <ListItemButton>Manage Users</ListItemButton>
+            {open ? (
+              <>
+        <GroupIcon />
+      <ListItemButton onClick={() =>
+         navigate("/admin/manage-users")}>
+          Manage Users
+     </ListItemButton>
+              </>
+            ) : (
+        <GroupIcon 
+        onClick={() =>
+    navigate("/admin/manage-users")} />
+            )}
           </ListItem>
           <ListItem>
             <CategoryIcon />
@@ -43,7 +72,9 @@ export default function Sidebar() {
           </ListItem>
           <ListItem>
             <ExtensionIcon />
-            <ListItemButton>Manage Products</ListItemButton>
+            <ListItemButton onClick={() => navigate("/admin/manage-products")}>
+              Manage Products
+            </ListItemButton>
           </ListItem>
           <ListItem>
             <MessageIcon />
