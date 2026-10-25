@@ -4,6 +4,7 @@ import Home from "./Pages/Home/Home";
 import LandinPage from "./Pages/LandingPage/LandingPage";
 import { Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* admin routes */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
         {/* //every route is a pagfe */}
       </Routes>
