@@ -16,7 +16,7 @@ export default function Sidebar({ open, onclick }) {
     <>
       <Box
         sx={{
-          position: "fixed",
+          position: "static",
           width: open ? "300px" : "70px",
           bgcolor: "#301934",
           height: "100vh",
@@ -35,9 +35,7 @@ export default function Sidebar({ open, onclick }) {
             {open ? (
               <>
                 <DashboardIcon />
-                <ListItemButton 
-                onClick={() => 
-                navigate("/admin/dashboard")}>
+                <ListItemButton onClick={() => navigate("/admin/dashboard")}>
                   Dashboard
                 </ListItemButton>
               </>
@@ -45,8 +43,7 @@ export default function Sidebar({ open, onclick }) {
               <>
                 <DashboardIcon
                   sx={{ cursor: "pointer" }}
-                  onClick={() => 
-                    navigate("/admin/dashboard")}
+                  onClick={() => navigate("/admin/dashboard")}
                 />
               </>
             )}
@@ -54,16 +51,13 @@ export default function Sidebar({ open, onclick }) {
           <ListItem>
             {open ? (
               <>
-        <GroupIcon />
-      <ListItemButton onClick={() =>
-         navigate("/admin/manage-users")}>
-          Manage Users
-     </ListItemButton>
+                <GroupIcon />
+                <ListItemButton onClick={() => navigate("/admin/manage-users")}>
+                  Manage Users
+                </ListItemButton>
               </>
             ) : (
-        <GroupIcon 
-        onClick={() =>
-    navigate("/admin/manage-users")} />
+              <GroupIcon onClick={() => navigate("/admin/manage-users")} />
             )}
           </ListItem>
           <ListItem>

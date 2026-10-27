@@ -7,11 +7,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/authContext";
 export default function Login() {
   const { login } = useAuth();
+
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",

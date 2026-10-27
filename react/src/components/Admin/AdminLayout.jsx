@@ -10,11 +10,9 @@ export default function AdminLayout() {
   return (
     <>
       {/* layout */}
-      <Box sx={{ display: "flex",
-         flexDirection: "row" }}>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Box sx={{ flex: 1 }}>
-          <Sidebar onclick={handleClick} 
-          open={isOpen} />
+          <Sidebar onclick={handleClick} open={isOpen} />
         </Box>
         <Box sx={{ flex: 4, my: 4 }}>
           <Outlet />
