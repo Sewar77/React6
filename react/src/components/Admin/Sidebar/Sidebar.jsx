@@ -16,7 +16,7 @@ export default function Sidebar({ open, onclick }) {
     <>
       <Box
         sx={{
-          position: "static",
+          position: "fixed",
           width: open ? "300px" : "70px",
           bgcolor: "#301934",
           height: "100vh",
