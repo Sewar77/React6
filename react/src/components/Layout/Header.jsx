@@ -21,7 +21,9 @@ export default function Header() {
           <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
             {/* use routes */}
             <IconButton onClick={() => navigate("/")}>Home</IconButton>
-            <IconButton>Contact</IconButton>
+            <IconButton onClick={() => navigate("/contact")}>
+              Contact
+            </IconButton>
             {/* in case no current user, show register and login btns */}
             {!currentUser || Object.keys(currentUser).length === 0 ? (
               <>

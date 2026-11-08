@@ -72,7 +72,9 @@ export default function Sidebar({ open, onclick }) {
           </ListItem>
           <ListItem>
             <MessageIcon />
-            <ListItemButton>Manage Messages</ListItemButton>
+            <ListItemButton onClick={() => navigate("/admin/manage-messages")}>
+              Manage Messages
+            </ListItemButton>
           </ListItem>
           <ListItem>
             <PersonIcon />

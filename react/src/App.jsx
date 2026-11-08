@@ -8,6 +8,8 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import DisplayUsers from "./components/Admin/Manage/ManageUsers/DisplayUsers";
 import AdminLayout from "./components/Admin/AdminLayout";
 import DisplayProducts from "./components/Admin/Manage/ManageProducts/DisplayProducts";
+import Contact from "./components/Contact/Contact";
+import ManageMessages from "./components/Admin/Manage/ManageMessages/ManageMessages";
 function App() {
   return (
     <>
@@ -21,12 +23,14 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* admin routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index path="dashboard" element={<AdminDashboard />} />
           <Route path="manage-users" element={<DisplayUsers />} />
           <Route path="manage-products" element={<DisplayProducts />} />
+          <Route path="manage-messages" element={<ManageMessages />} />
         </Route>
 
         {/* //every route is a pagfe */}
