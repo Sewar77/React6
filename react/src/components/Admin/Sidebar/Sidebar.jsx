@@ -10,7 +10,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import PersonIcon from "@mui/icons-material/Person";
 import ReorderIcon from "@mui/icons-material/Reorder";
 export default function Sidebar({ open, onclick }) {
-  const { lougout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   return (
     <>
@@ -80,7 +80,7 @@ export default function Sidebar({ open, onclick }) {
           </ListItem>
           <ListItem>
             <LogoutIcon />
-            <ListItemButton onClick={() => lougout()}>Logout</ListItemButton>
+            <ListItemButton onClick={() => logout()}>Logout</ListItemButton>
           </ListItem>
         </List>
       </Box>

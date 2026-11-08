@@ -18,18 +18,33 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import AddFormProduct from "../../AdminComponents/AddFormProduct";
+import EditModal from "../../AdminComponents/EditModal";
 export default function DisplayProducts() {
   const { products, deleteProduct, product, getProductById } = useProducts();
   const [openModal, setOpenModal] = useState(false);
-  console.log(product);
+  const [openAddForm, setOpenAddForm] = useState(false);
+
+  //state ,
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selctedProduct, setSelctedProduct] = useState(null);
   return (
     <>
       <Box>
         <Typography variant="h3">Manage products</Typography>
         <Divider sx={{ p: 2 }}>where to manage</Divider>
-        <Button variant="contained" sx={{ m: 3 }}>
-          Add product
+        <Button
+          variant="contained"
+          sx={{ m: 3 }}
+          onClick={() => setOpenAddForm(!openAddForm)}
+        >
+          {openAddForm ? "Cancel" : "Add product"}
         </Button>
+
+        <Box>
+          {openAddForm && <AddFormProduct setOpenAddForm={setOpenAddForm} />}
+        </Box>
+
         <TableContainer sx={{ width: "100%", overflowX: "scroll" }}>
           <Table>
             <TableHead>
@@ -37,6 +52,8 @@ export default function DisplayProducts() {
                 <TableCell>#</TableCell>
                 <TableCell>Name</TableCell>
                 <TableCell>Descirpion</TableCell>
+                <TableCell>Price</TableCell>
+                <TableCell>Stock</TableCell>
                 <TableCell>ACTIONS</TableCell>
               </TableRow>
             </TableHead>
@@ -48,6 +65,8 @@ export default function DisplayProducts() {
                     <TableCell>{idx + 1}</TableCell>
                     <TableCell>{product.name}</TableCell>
                     <TableCell>{product.description}</TableCell>
+                    <TableCell>{product.price}</TableCell>
+                    <TableCell>{product.stock}</TableCell>
                     <TableCell>
                       <Button
                         color="info"
@@ -63,6 +82,16 @@ export default function DisplayProducts() {
                         onClick={() => deleteProduct(product.id)}
                       >
                         Delete
+                      </Button>
+
+                      <Button
+                        color="error"
+                        onClick={() => (
+                          setOpenEditModal(true),
+                          setSelctedProduct(product)
+                        )}
+                      >
+                        Update
                       </Button>
                     </TableCell>
                   </TableRow>
@@ -94,6 +123,8 @@ export default function DisplayProducts() {
         >
           <Typography variant="h3">{product.name}</Typography>
           <Typography variant="body2">{product.description}</Typography>
+          <Typography variant="body2">{product.price}</Typography>
+          <Typography variant="body2">{product.stock}</Typography>
           <Button onClick={() => setOpenModal(false)}>close</Button>
           <Button
             onClick={() => (deleteProduct(product.id), setOpenModal(false))}
@@ -102,6 +133,13 @@ export default function DisplayProducts() {
           </Button>
         </Box>
       </Modal>
+      {openEditModal && (
+        <EditModal
+          openEditModal={openEditModal}
+          setOpenEditModal={setOpenEditModal}
+          selctedProduct={selctedProduct}
+        />
+      )}
     </>
   );
 }
