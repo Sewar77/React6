@@ -10,7 +10,7 @@ import {
 import { useContext, useState } from "react";
 import { useAuth } from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Context/authContext";
+import { AuthContext } from "../../Context/AuthContext";
 export default function Login() {
   const { login } = useAuth();
 
