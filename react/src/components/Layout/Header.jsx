@@ -8,11 +8,15 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Hooks/useAuth";
+import { useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 export default function Header() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   // get from localstorage
+  console.log(theme);
   return (
     <>
       <AppBar position="static">
@@ -21,6 +25,7 @@ export default function Header() {
           <Box sx={{ display: "flex", flexDirection: "row", gap: 3 }}>
             {/* use routes */}
             <IconButton onClick={() => navigate("/")}>Home</IconButton>
+            <IconButton onClick={toggleTheme}>Toggle heme</IconButton>
             <IconButton onClick={() => navigate("/contact")}>
               Contact
             </IconButton>

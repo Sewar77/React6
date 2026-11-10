@@ -63,6 +63,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 h1,
@@ -107,4 +108,12 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+body.light {
+  background-color: #f3f4f6e9;
+  color: black;
+}
+body.dark {
+  background-color: black;
+  color: #f3f4f6e2;
 }
