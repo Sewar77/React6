@@ -3,6 +3,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardHeader,
   Container,
   Grid,
   Rating,
@@ -11,7 +12,7 @@ import {
 import { useMessages } from "../../../../Hooks/useMessages";
 
 export default function ManageMessages() {
-  const { messages } = useMessages();
+  const { messages, updateStatus } = useMessages();
   return (
     <>
       <Container sx={{ my: 2 }}>
@@ -22,6 +23,7 @@ export default function ManageMessages() {
             return (
               <Grid key={msg.id}>
                 <Card>
+                  <CardHeader title={msg.status} />
                   <CardContent>
                     <Typography variant="h6">Name: {msg.userName}</Typography>
                     <Typography variant="body2">
@@ -34,10 +36,25 @@ export default function ManageMessages() {
                   </CardContent>
 
                   <CardActions>
-                    <Button variant="contained" color="error">
+                    <Button
+                      variant="contained"
+                      color="error"
+                      onClick={() => updateStatus(msg.id, "rejected")}
+                    >
                       Rejecet
                     </Button>
-                    <Button variant="contained" color="success">
+                    <Button
+                      variant="contained"
+                      color="warning"
+                      onClick={() => updateStatus(msg.id, "pending")}
+                    >
+                      Pending
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => updateStatus(msg.id, "approved")}
+                    >
                       Approve
                     </Button>
                   </CardActions>

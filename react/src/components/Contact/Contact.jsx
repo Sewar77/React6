@@ -1,7 +1,9 @@
 import {
   Button,
+  Card,
   Container,
   Divider,
+  Grid,
   Paper,
   Rating,
   TextField,
@@ -11,7 +13,7 @@ import Header from "../Layout/Header";
 import { useState } from "react";
 import { useMessages } from "../../Hooks/useMessages";
 export default function Contact() {
-  const { createMessage } = useMessages();
+  const { createMessage, approvedMessages } = useMessages();
   const [newMessage, setNewMessage] = useState({
     name: "",
     email: "",
@@ -42,17 +44,17 @@ export default function Contact() {
             required
             value={newMessage.name}
             onChange={(e) =>
- setNewMessage({ ...newMessage, 
-  name: e.target.value })
+              setNewMessage({ ...newMessage, name: e.target.value })
             }
           />
           <TextField
             label="Email"
             value={newMessage.email}
             onChange={(e) =>
-              setNewMessage({ 
-                ...newMessage, 
-                email: e.target.value })
+              setNewMessage({
+                ...newMessage,
+                email: e.target.value,
+              })
             }
           />
 
@@ -78,6 +80,21 @@ export default function Contact() {
             Send Your Message
           </Button>
         </Paper>
+      </Container>
+      <Container>
+        <Grid container spacing={4}>
+          {approvedMessages.map((msg) => {
+            return (
+              <Grid key={msg.id}>
+                <Card>
+                  <Typography>{msg.userName}</Typography>
+                  <Typography>{msg.userMessage}</Typography>
+                  <Rating value={msg.userRating} disabled />
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
       </Container>
     </>
   );
